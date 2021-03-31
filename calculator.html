@@ -1,0 +1,66 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name ="viewport" content="width-device-width, initial-scle=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Activity 2</title>
+    
+</head>
+<style>
+input[type=text], input[type=number] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+</style>
+<script>  
+function calculate(){ 
+var n1=document.myform.name1.value;
+var n2=document.myform.name2.value;
+var s1=document.myform.score1.value;
+var s2=document.myform.score2.value;
+
+if(n1==n2 || (s1!="" && s2!="" && s2-s1>6) || (s1!=s2!=""&&s1-s2>6)){  
+  alert("Invalid Input");  
+  return false;  
+  }
+  else if(n1==""||n2==""||s1==""||s2==""){
+  alert("fill the fields required");
+  return false;
+  }
+  else if(n1!=n2 && s2>s1){
+  var s3=s2-s1;
+  alert(n2+" won by "+s3 + " Runs");
+  return false;
+  }
+  else if(n1!=n2 && s1>s2){
+  var s3=s1-s2;
+  alert(n1+" won by "+s3 + " Runs");
+  return false;
+  }
+}  
+</script>  
+<body>
+    <h2>Activity 2</h2>  
+    <form name ="myform" method="post" onsubmit="return calculate()">
+        <p>
+                <label>Enter the Team Name 1: </label>
+                <input type="text" id="name1" placeholder="Enter the Team Name 1">
+                <label>Score 1: </label>
+                <input type="number" id="score1" placeholder="Score 1">
+        </p>
+        <p>
+                <label>Enter the Team Name 2: </label>
+                <input type="text" id="name2" placeholder="Enter the Team Name 2">
+                <label>Score 2: </label>
+                <input type="number" id="score2" placeholder="Score 2">
+        </p>  
+        <input type="submit" value="Result">  
+    </form>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name ="viewport" content="width-device-width, initial-scle=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel ="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <title>Assignment 1</title>
+</head>
+<style>
+table, tr, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+img{
+    border-radius: 8px;
+    width: 150px;
+}</style>
+<body>
+<h2 style="text-align:center;">Assignment 1</h2><br>
+ <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User Login</th>
+                    <th>User Id</th>
+                    <th>User Node Id</th>
+                    <th>User Avatar</th>
+
+                </tr>
+            </thead>
+            <tbody id ="data">
+ 
+                </tbody>
+
+            </table>
+ </div>
+
+
+    <script>
+        fetch('http://api.github.com/users').then(
+            res=>{
+                res.json().then(
+                    data=>{
+                        console.log(data);
+                        if(data.length > 0){
+                            var temp = "";
+                            data.forEach((u)=>{
+                                temp +="<tr>";
+                                temp += "<td>"+u.login+"</td>";
+                                temp += "<td>"+u.id+"</td>";
+                                temp += "<td>"+u.node_id+"</td>";
+                                temp += "<td><img src="+u.avatar_url+"></td></tr>";
+                            })
+                            document.getElementById("data").innerHTML=temp;
+                        }
+                    }
+                )
+            }
+        )
+    </script>
+</body>
+</html>
