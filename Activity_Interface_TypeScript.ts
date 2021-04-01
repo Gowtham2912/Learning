@@ -1,8 +1,8 @@
-class Person {
+class Person implements Grade{
     group: string
     name: string
 
-    constructor(group: string, name:string, public marks:number, public isTopper:boolean ){
+    constructor(group: string, name:string, public marks:number, public isTopper: boolean){
         this.group = group;
         this.name = name;
     }
@@ -12,28 +12,31 @@ class Person {
     }
 
     printGrade(){
-        if(this.marks>90)
-        return `This Person score ${this.marks} and got Grade A`;
-        else
+        if(this.marks>90 && this.marks<=95){
+        return `This Person scored ${this.marks} and got Grade A`;
+        }else if(this.marks>95){
+        return `This Person scored ${this.marks} and got Grade S and he ${this.isTopper ? 'is' : 'is not'} the topper of section`
+        }else{
         return `This Person soored ${this.marks} and got Grade B`;
+        }
     }
 
-    printTopper(){
-        return `THis Person ${this.isTopper ? 'is' : 'is not'} topper`
+    printMarks() : void{
+        console.log(this.marks)
     }
 }
 
-interface Grade{
+interface Grade extends Topper{
     marks : number
-    printGrade(): string;
+    printGrade(): string
+    printMarks(): void;
 }
 
-interface Topper extends Grade{
+interface Topper{
     isTopper: boolean
-    printTopper(): string;
 }
 
-const person = new Person('Java Script', 'Gowtham',90,true);
+const person = new Person('Java Script', 'Gowtham',97,false);
 console.log(person.printPerson())
 console.log(person.printGrade())
-console.log(person.printTopper())
+person.printMarks()
